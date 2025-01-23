@@ -1,0 +1,78 @@
+@startuml
+set namespaceSeparator ::
+
+abstract class "flutter_movie_app::handlers::movie_repository.dart::MovieRepository" {
+  +dynamic getMovies()
+}
+
+class "flutter_movie_app::handlers::movie_service.dart::MovieService" {
+  {static} +String apiKey
+  {static} +String baseUrl
+  +dynamic fetchMovies()
+}
+
+class "flutter_movie_app::handlers::tmd_movie_repository.dart::TMDBMovieRepository" {
+  -MovieService _movieService
+  +dynamic getMovies()
+  +dynamic fetchTotalPages()
+}
+
+"flutter_movie_app::handlers::tmd_movie_repository.dart::TMDBMovieRepository" o-- "flutter_movie_app::handlers::movie_service.dart::MovieService"
+"flutter_movie_app::handlers::movie_repository.dart::MovieRepository" <|-- "flutter_movie_app::handlers::tmd_movie_repository.dart::TMDBMovieRepository"
+
+class "flutter_movie_app::main.dart::MovieApp" {
+  +_MovieAppState createState()
+}
+
+"flutter::src::widgets::framework.dart::StatefulWidget" <|-- "flutter_movie_app::main.dart::MovieApp"
+
+class "flutter_movie_app::main.dart::_MovieAppState" {
+  +TMDBMovieRepository movieRepository
+  +List<Movie> movies
+  +int currentPage
+  +int totalPages
+  +ScrollController scrollController
+  +void initState()
+  +dynamic fetchMovies()
+  +void toggleSynopsis()
+  +Widget build()
+}
+
+"flutter_movie_app::main.dart::_MovieAppState" o-- "flutter_movie_app::handlers::tmd_movie_repository.dart::TMDBMovieRepository"
+"flutter_movie_app::main.dart::_MovieAppState" o-- "flutter::src::widgets::scroll_controller.dart::ScrollController"
+"flutter::src::widgets::framework.dart::State" <|-- "flutter_movie_app::main.dart::_MovieAppState"
+
+class "flutter_movie_app::objects::movie.dart::Movie" {
+  +String title
+  +String posterPath
+  +String releaseDate
+  +double voteAverage
+  +int voteCount
+  +String overview
+  +bool isExpanded
+}
+
+class "flutter_movie_app::widgets::movie_list.dart::MovieList" {
+  +List<Movie> movies
+  +ScrollController scrollController
+  +dynamic Function(int) onToggleSynopsis
+  +int currentPage
+  +Widget build()
+}
+
+"flutter_movie_app::widgets::movie_list.dart::MovieList" o-- "flutter::src::widgets::scroll_controller.dart::ScrollController"
+"flutter_movie_app::widgets::movie_list.dart::MovieList" o-- "null::dynamic Function(int)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flutter_movie_app::widgets::movie_list.dart::MovieList"
+
+class "flutter_movie_app::widgets::pagination_controls.dart::PaginationControls" {
+  +int totalPages
+  +dynamic Function(int) onPageChange
+  +Widget buildButton()
+  +Widget build()
+}
+
+"flutter_movie_app::widgets::pagination_controls.dart::PaginationControls" o-- "null::dynamic Function(int)"
+"flutter::src::widgets::framework.dart::StatelessWidget" <|-- "flutter_movie_app::widgets::pagination_controls.dart::PaginationControls"
+
+
+@enduml
