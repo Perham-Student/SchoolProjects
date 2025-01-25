@@ -40,6 +40,14 @@ Before you start, make sure you have the following:
 
 ---
 
+### Features:
+* Paginated Movie List: Fetches and displays movies from the TMDB API as a scrollable list.
+* Expandable Movie Details: Tap the expand icon of a movie to toggle and view its synopsis.
+* Modular Code Design: Separates API logic, state management, and UI into reusable components, maing the code more future-proof.
+* First Flutter Project: This project was my first hands-on learning experience for Flutter, Dart and API integration.
+
+---
+
 ### Potential future improvements:
 * Adding a drop-down menu to categorize movies by genre.
 * Improving the UI with a focus on user-friendliness and a visually pleasing design.
@@ -47,10 +55,8 @@ Before you start, make sure you have the following:
 
 ---
 
-### Features:
-* Paginated Movie List: Fetches and displays movies from the TMDB API as a scrollable list.
-* Expandable Movie Details: Tap the expand icon of a movie to toggle and view its synopsis.
-* Modular Code Design: Separates API logic, state management, and UI into reusable components, maing the code more future-proof.
-* First Flutter Project: This project was my first hands-on learning experience for Flutter, Dart and API integration.
-
+### Notes:
+* The first main file (before refraction) was kept to track the progress and learning steps.
+* There is extensive commentary in the code, as this project focused heavily on learning and understanding concepts.
+* Unfortunately, this repository is missing the Git commit history.
 
