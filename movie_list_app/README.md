@@ -1,4 +1,4 @@
-# Movie List Application - Course Project
+# Movie List Application - Course Project (OOP-2)
 
 This repository contains the **Movie List Application**, developed as part of my OOP2 course project. The project is structured to meet the course requirements by applying object-oriented principles and exploring Flutter development using the Dart programming language.
 
